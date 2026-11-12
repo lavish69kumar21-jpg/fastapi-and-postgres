@@ -4,6 +4,7 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Path, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -152,6 +153,12 @@ def get_db():
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Part 9: GET one student
 
